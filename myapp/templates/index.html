@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Freshora - Your Online Store{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Live Better with Freshora</h1>
+        <p>Discover a supershop designed to make your life simpler, healthier, and more joyful</p>
+        <a href="#" class="cta-button">Shop Now</a>
+    </div>
+</section>
+
+<main>
+    <!-- Category Section  -->
+    <section class="categories">
+        <h2>Categories</h2>
+        <div class="category-cards">
+            <div class="card">
+                <h3>Electronics</h3>
+            </div>
+            <div class="card">
+                <h3>Fashion</h3>
+            </div>
+            <div class="card">
+                <h3>Home & Kitchen</h3>
+            </div>
+            <div class="card">
+                <h3>Groceries</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Product Section -->
+
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <!-- Add the "add-to-cart-btn" class to each button -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Product Image">
+                <h3>Product Name 1</h3>
+                <p class="price">$19.99</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Product Image">
+                <h3>Product Name 2</h3>
+                <p class="price">$29.99</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Product Image">
+                <h3>Product Name 3</h3>
+                <p class="price">$39.99</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Product Image">
+                <h3>Product Name 4</h3>
+                <p class="price">$49.99</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

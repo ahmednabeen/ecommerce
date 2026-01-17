@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SuperShop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'images/logo.png' %}" alt="Mahua SuperShop Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <div class="nav-icons">
+                <!-- Search Container -->
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
+                    <button class="search-btn" id="searchBtn">&#128269;</button>
+                </div>
+
+                <!-- Cart Icon -->
+                <div class="cart-container">
+                    <a href="#" class="cart-icon">
+                        &#128722; <!-- Shopping cart HTML entity -->
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- This is where content from other pages will be injected -->
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 SuperShop. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- JS for searchbar & cart -->
+
+    <script src="{% static 'js/script.js' %}" defer></script>
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>

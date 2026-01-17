@@ -1,0 +1,298 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFDE7;
+}
+
+/* Header and Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1.5rem;
+    color: white;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+/* Search & Cart css */
+
+.nav-icons {
+    display: flex; /* This is the key: aligns children (search, cart) in a row */
+    align-items: center; /* Vertically aligns them in the middle */
+}
+
+/* Search Container - Stays as a flex item */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Search Input - Simplified positioning */
+.search-input {
+    width: 0;
+    padding: 0.5rem 0;
+    border: none;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden; /* Use visibility for better accessibility */
+    transition: all 0.4s ease-in-out;
+    font-size: 1rem;
+    /* Removed absolute positioning */
+}
+
+/* When the search input is active */
+.search-input.active {
+    width: 200px;
+    opacity: .6;
+    visibility: visible; /* Make it visible */
+    padding: 0.5rem;
+    margin-right: 10px; /* Add some space between the input and the search icon */
+}
+
+/* Search Button/Icon */
+.search-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    /* We will re-order this with flexbox */
+}
+
+/* Cart Container - Stays as a flex item */
+.cart-container {
+    position: relative; /* Keep this for the badge positioning */
+    margin-left: 15px; /* Space between search icon and cart icon */
+}
+
+.cart-icon {
+    position: relative;
+    color: orangered;
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: block; /* Helps with consistent alignment */
+}
+
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: #ff6600; /* A bright color to stand out */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border: 2px solid #333; /* Makes it look like it's attached to the icon */
+    
+    /* Hide badge if it's empty */
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Style for when the badge has items */
+.cart-badge.active {
+    transform: scale(1); /* Make it visible */
+}
+
+/* Renaming the old product button style for clarity */
+.add-to-cart-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #218838;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #100202;
+    text-align: center;
+    margin: 2.5rem auto;
+}
+.hero-content h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 22px;
+    background-color: #aa4d0e;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Main Content Sections */
+main {
+    padding: 2rem;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* Categories Section */
+.category-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 200px;
+    margin: 1rem;
+}
+
+/* Featured Products Section */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.price {
+    color: #333;
+    font-weight: bold;
+}
+
+.product-card button {
+    background-color: #aa4d0e;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-left: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .search-bar {
+        margin-top: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        margin-top: 1rem;
+    }
+}
