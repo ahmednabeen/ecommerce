@@ -14,24 +14,39 @@
 </section>
 
 <main>
-    <!-- Category Section  -->
-    <section class="categories">
-        <h2>Categories</h2>
-        <div class="category-cards">
-            <div class="card">
-                <h3>Electronics</h3>
-            </div>
-            <div class="card">
-                <h3>Fashion</h3>
-            </div>
-            <div class="card">
-                <h3>Home & Kitchen</h3>
-            </div>
-            <div class="card">
-                <h3>Groceries</h3>
-            </div>
+    <!-- Category Section -->
+<section class="categories">
+    <h2>Categories</h2>
+    <!-- Add a wrapper for the animation and overflow control -->
+    <div class="scroller-wrapper">
+        <div class="category-cards scroller">
+            <!-- Loop through the categories THE FIRST TIME -->
+            {% for category in categories %}
+                <a href="#" class="card-link">
+                    <div class="card">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="{{ category.name }} logo" class="card-image">
+                        {% endif %}
+                        <h3 class="card-title">{{ category.name }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+
+            <!-- Loop through the categories A SECOND TIME (for the seamless loop) -->
+            {% for category in categories %}
+                <a href="#" class="card-link" aria-hidden="true"> <!-- aria-hidden for accessibility -->
+                    <div class="card">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="{{ category.name }} logo" class="card-image">
+                        {% endif %}
+                        <h3 class="card-title">{{ category.name }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Featured Product Section -->
 
