@@ -133,7 +133,7 @@ body {
     font-size: 0.75rem;
     font-weight: bold;
     border: 2px solid #333; /* Makes it look like it's attached to the icon */
-    
+
     /* Hide badge if it's empty */
     transform: scale(0);
     transition: transform 0.2s ease-in-out;
@@ -189,8 +189,10 @@ body {
     border-radius: 20px;
     font-weight: bold;
 }
+/* ==========================================================================
+    Main Content Sections CSS
+   ========================================================================== */
 
-/* Main Content Sections */
 main {
     padding: 2rem;
 }
@@ -202,7 +204,7 @@ h2 {
 }
 
 /* ==========================================================================
-    Categories Section (with Uniform Card Heights)
+    Categories Section CSS (with Uniform Card Heights)
    ========================================================================== */
 
 .categories h2 {
@@ -211,9 +213,6 @@ h2 {
     margin-bottom: 3rem;
 }
 
-/*
-  The wrapper that hides the overflow and creates the fade-out effect.
-*/
 .scroller-wrapper {
     overflow: hidden;
     position: relative;
@@ -221,23 +220,20 @@ h2 {
     mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
 
-/*
-  The main scrolling container.
-*/
 .category-cards.scroller {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     gap: 1.5rem;
     width: max-content;
     animation: scroll 30s linear infinite;
     margin-bottom: 3.5rem;
 }
 
-/* Pause animation on hover */
 .scroller-wrapper:hover .category-cards.scroller {
     animation-play-state: paused;
 }
 
-/* The scrolling animation keyframes */
 @keyframes scroll {
     from {
         transform: translateX(0);
@@ -255,10 +251,11 @@ h2 {
 
 .card {
     background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 3px rgb(241, 116, 202);
     width: 220px;
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
     transition: transform 0.3s ease;
     height: 100%; 
@@ -271,8 +268,8 @@ h2 {
 }
 
 .card-image {
-    height: 90px;
-    width: 90px;
+    height: 10rem;
+    width: 10rem;
     object-fit: contain;
     margin-bottom: 1.5rem;
     align-self: center; 
@@ -291,11 +288,14 @@ h2 {
 
 /* ====================================================================== 
      Featured Products Section CSS
-   ========================================================================== */w
+   ========================================================================== */
 
-.featured-products h2{
+.featured-products h2 {
     text-align: center;
     font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+.feat {
     margin: 3rem;
 }
 
@@ -342,18 +342,23 @@ h2 {
     margin-top: 1rem;
 }
 
-/* Footer */
+/* ====================================================================== 
+     Footer Section CSS
+   ========================================================================== */
+
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 1rem;
+    font-size: 20px;
+    padding: 1.2rem;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 5rem;
 }
 
 .footer-links {
@@ -361,15 +366,263 @@ footer {
     display: flex;
     margin: 0;
     padding: 0;
+    margin-right: 5rem;
 }
 
 .footer-links li {
-    margin-left: 20px;
+    margin-left: 4rem;
 }
 
 .footer-links a {
     color: white;
-    text-decoration: none;
+    font-weight: bold;
+    text-decoration-color: rgb(233, 70, 70);
 }
 
-/* Responsive Design */
+/* ====================================================================== 
+   PRODUCTS PAGE CSS
+   ====================================================================== */
+
+.all-product-page-container {
+    padding: 1rem 5%;
+    margin-top: 80px;
+}
+
+.all-product-page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.all-product-page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.all-product-page-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* --- Grid Layout --- */
+.all-product-page-container .all-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    justify-items: center;
+}
+
+/* --- Card Container --- */
+.all-product-card {
+    position: relative;
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 320px;
+    height: 400px;
+}
+
+.all-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.all-product-card:hover .all-product-image {
+    transform: scale(1.20);
+}
+
+/* --- Card Image --- */
+.all-product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* --- Card Content Wrapper --- */
+.all-product-card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* --- Text Content Styles --- */
+.all-product-category {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 0.4rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.all-product-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #343a40;
+    margin: 0 0 0.6rem 0;
+    line-height: 1.3;
+    height: 2.6em;
+    overflow: hidden;
+}
+
+.all-product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0 0 auto 0;
+}
+
+/* --- Button Style --- */
+.all-product-card .add-to-cart-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background-color: #aa4d0e;
+    border: 5px rgb(154, 149, 149);
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.all-product-card .add-to-cart-btn:hover {
+    background-color: #218838;
+}
+
+/* --- Badge Styles --- */
+.all-product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.all-product-sale-badge {
+    background-color: #dc3545;
+}
+
+.all-product-featured-badge {
+    background-color: #ffc107;
+    color: #333;
+}
+
+/* --- Message for No Products --- */
+.all-product-no-products-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    padding: 3rem;
+}
+
+/* ======================================================================
+   NUMBERED PAGINATION STYLES CSS
+   ====================================================================== */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 3rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Previous / Next */
+.page-btn {
+    padding: 8px 14px;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    background-color: #28a745;
+    color: #ffffff;
+    border-color: #28a745;
+}
+
+.page-btn.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+}
+
+/* Page Numbers */
+.page-number {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.page-number:hover {
+    background-color: #28a745;
+    color: #ffffff;
+    border-color: #28a745;
+}
+
+/* Active Page */
+.page-number.active {
+    background-color: #28a745;
+    color: #ffffff;
+    border-color: #28a745;
+    pointer-events: none;
+}
+
+/* Ellipsis */
+.dots {
+    padding: 8px 6px;
+    color: #777;
+    font-weight: 600;
+}
+
+
+
+@media (max-width: 1200px) {
+    .all-product-page-container .all-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .all-product-page-container .all-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .all-product-page-container .all-product-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+
+/* ======================================================================
+   Responsive Design CSS
+   ====================================================================== */

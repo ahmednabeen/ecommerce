@@ -14,44 +14,33 @@
 </section>
 
 <main>
-    <!-- Category Section -->
-<section class="categories">
-    <h2>Categories</h2>
-    <!-- Add a wrapper for the animation and overflow control -->
-    <div class="scroller-wrapper">
-        <div class="category-cards scroller">
-            <!-- Loop through the categories THE FIRST TIME -->
-            {% for category in categories %}
-                <a href="#" class="card-link">
-                    <div class="card">
-                        {% if category.image %}
-                            <img src="{{ category.image.url }}" alt="{{ category.name }} logo" class="card-image">
-                        {% endif %}
-                        <h3 class="card-title">{{ category.name }}</h3>
-                    </div>
-                </a>
-            {% endfor %}
-
-            <!-- Loop through the categories A SECOND TIME (for the seamless loop) -->
-            {% for category in categories %}
-                <a href="#" class="card-link" aria-hidden="true"> <!-- aria-hidden for accessibility -->
-                    <div class="card">
-                        {% if category.image %}
-                            <img src="{{ category.image.url }}" alt="{{ category.name }} logo" class="card-image">
-                        {% endif %}
-                        <h3 class="card-title">{{ category.name }}</h3>
-                    </div>
-                </a>
-            {% endfor %}
+    <!-- Category Section  -->
+    <section class="categories">
+        <h2>Categories</h2>
+        <div class="category-cards">
+            <div class="scroller-wrapper">
+                <div class="category-cards scroller">
+                    <!-- Loop through the categories A SECOND TIME (for the seamless loop) -->
+                    {% for category in categories %}
+                        <a href="#" class="card-link" aria-hidden="true"> <!-- aria-hidden for accessibility -->
+                            <div class="card">
+                                {% if category.image %}
+                                    <img src="{{ category.image.url }}" alt="{{ category.name }} logo" class="card-image">
+                                {% endif %}
+                                <h3 class="card-title">{{ category.name }}</h3>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- Featured Product Section -->
 
     <section class="featured-products">
-        <h2>Featured Products</h2>
+        <div class="feat"><h2>Featured Products</h2></div>
         <div class="product-grid">
             <!-- Add the "add-to-cart-btn" class to each button -->
             <div class="product-card">
