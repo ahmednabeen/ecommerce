@@ -295,51 +295,166 @@ h2 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
 }
+
 .feat {
     margin: 3rem;
 }
 
-.product-grid {
+/* --- Product Grid --- */
+.all-product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    justify-items: center;
 }
 
-.product-card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
+/* --- Product Card --- */
+.all-product-card {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+    height: 420px;
+}
+
+.all-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.all-product-card:hover .all-product-image {
+    transform: scale(1.1);
+}
+
+/* --- Image --- */
+.all-product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    padding: 10px;
+    transition: transform 0.4s ease;
+}
+
+/* --- Content --- */
+.all-product-card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-grow: 1;
 }
 
-.product-card img {
-    max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+.all-product-category {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
 }
 
-.product-card h3 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+.all-product-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 0.6rem;
+    height: 2.6em;
+    overflow: hidden;
 }
 
-.price {
-    color: #333;
-    font-weight: bold;
+.all-product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #aa4d0e;
+    margin-top: auto;
 }
 
-.product-card button {
+/* --- Button --- */
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
     background-color: #aa4d0e;
-    color: white;
     border: none;
-    padding: 10px 15px;
     border-radius: 8px;
+    color: #fff;
     cursor: pointer;
     margin-top: 1rem;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #c96d2b;
+}
+
+/* --- Sale Badge --- */
+.all-product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.all-product-sale-badge {
+    background-color: #dc3545;
+}
+
+/* --- Pagination --- */
+.pagination {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.page-btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.page-btn.active {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+    .all-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .all-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .all-product-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ====================================================================== 
@@ -545,7 +660,7 @@ footer {
     flex-wrap: wrap;
 }
 
-/* Previous / Next */
+/* Previous / Next Buttons */
 .page-btn {
     padding: 8px 14px;
     background-color: #ffffff;
@@ -554,6 +669,7 @@ footer {
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 14px;
     transition: all 0.2s ease;
 }
 
@@ -563,10 +679,12 @@ footer {
     border-color: #28a745;
 }
 
+/* Disabled state (optional) */
 .page-btn.disabled {
     color: #aaa;
     cursor: not-allowed;
     background-color: #f8f9fa;
+    border-color: #ddd;
 }
 
 /* Page Numbers */
@@ -577,6 +695,7 @@ footer {
     color: #333;
     text-decoration: none;
     font-weight: 600;
+    font-size: 14px;
     transition: all 0.2s ease;
 }
 
@@ -594,11 +713,12 @@ footer {
     pointer-events: none;
 }
 
-/* Ellipsis */
+/* Ellipsis (...) */
 .dots {
     padding: 8px 6px;
     color: #777;
     font-weight: 600;
+    font-size: 14px;
 }
 
 

@@ -40,35 +40,79 @@
     <!-- Featured Product Section -->
 
     <section class="featured-products">
-        <div class="feat"><h2>Featured Products</h2></div>
-        <div class="product-grid">
-            <!-- Add the "add-to-cart-btn" class to each button -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product Image">
-                <h3>Product Name 1</h3>
-                <p class="price">$19.99</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product Image">
-                <h3>Product Name 2</h3>
-                <p class="price">$29.99</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product Image">
-                <h3>Product Name 3</h3>
-                <p class="price">$39.99</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product Image">
-                <h3>Product Name 4</h3>
-                <p class="price">$49.99</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
+        <div class="feat">
+            <h2>Featured Products</h2>
         </div>
+
+        <div class="all-product-grid">
+            {% for product in products %}
+                <div class="all-product-card">
+
+                    {% if product.is_on_sale %}
+                        <span class="all-product-badge all-product-sale-badge">
+                            Sale
+                        </span>
+                    {% endif %}
+
+                    <img 
+                        src="{{ product.image.url }}" 
+                        alt="{{ product.name }}" 
+                        class="all-product-image"
+                    >
+
+                    <div class="all-product-card-content">
+                        <p class="all-product-category">
+                            {{ product.category.name }}
+                        </p>
+
+                        <h3 class="all-product-name">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="all-product-price">
+                            ${{ product.price }}
+                        </p>
+
+                        <button class="add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                </div>
+            {% empty %}
+                <p>No featured products available.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if products.paginator.num_pages > 1 %}
+            <div class="pagination">
+
+                {% if products.has_previous %}
+                    <a href="?page={{ products.previous_page_number }}" class="page-btn">
+                        Previous
+                    </a>
+                {% endif %}
+
+                {% for num in products.paginator.page_range %}
+                    {% if num == products.number %}
+                        <span class="page-number active">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}" class="page-number">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}" class="page-btn">
+                        Next
+                    </a>
+                {% endif %}
+
+            </div>
+        {% endif %}
     </section>
+
+
 </main>
 
 {% endblock %}
