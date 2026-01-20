@@ -39,17 +39,17 @@
 
     <!-- Featured Product Section -->
 
-    <section class="featured-products">
-        <div class="feat">
+    <section class="fp-featured-products">
+        <div class="fp-feat">
             <h2>Featured Products</h2>
         </div>
 
-        <div class="all-product-grid">
+        <div class="fp-all-product-grid">
             {% for product in products %}
-                <div class="all-product-card">
+                <div class="fp-all-product-card">
 
                     {% if product.is_on_sale %}
-                        <span class="all-product-badge all-product-sale-badge">
+                        <span class="fp-all-product-badge fp-all-product-sale-badge">
                             Sale
                         </span>
                     {% endif %}
@@ -57,23 +57,23 @@
                     <img 
                         src="{{ product.image.url }}" 
                         alt="{{ product.name }}" 
-                        class="all-product-image"
+                        class="fp-all-product-image"
                     >
 
-                    <div class="all-product-card-content">
-                        <p class="all-product-category">
+                    <div class="fp-all-product-card-content">
+                        {% comment %} <p class="fp-all-product-category">
                             {{ product.category.name }}
-                        </p>
+                        </p> {% endcomment %}
 
-                        <h3 class="all-product-name">
+                        <h3 class="fp-all-product-name">
                             {{ product.name }}
                         </h3>
 
-                        <p class="all-product-price">
+                        <p class="fp-all-product-price">
                             ${{ product.price }}
                         </p>
 
-                        <button class="add-to-cart-btn">
+                        <button class="fp-add-to-cart-btn">
                             Add to Cart
                         </button>
                     </div>
@@ -86,24 +86,24 @@
 
         <!-- Pagination -->
         {% if products.paginator.num_pages > 1 %}
-            <div class="pagination">
+            <div class="fp-pagination">
 
                 {% if products.has_previous %}
-                    <a href="?page={{ products.previous_page_number }}" class="page-btn">
+                    <a href="?page={{ products.previous_page_number }}" class="fp-page-btn">
                         Previous
                     </a>
                 {% endif %}
 
                 {% for num in products.paginator.page_range %}
                     {% if num == products.number %}
-                        <span class="page-number active">{{ num }}</span>
+                        <span class="fp-page-number active">{{ num }}</span>
                     {% else %}
-                        <a href="?page={{ num }}" class="page-number">{{ num }}</a>
+                        <a href="?page={{ num }}" class="fp-page-number">{{ num }}</a>
                     {% endif %}
                 {% endfor %}
 
                 {% if products.has_next %}
-                    <a href="?page={{ products.next_page_number }}" class="page-btn">
+                    <a href="?page={{ products.next_page_number }}" class="fp-page-btn">
                         Next
                     </a>
                 {% endif %}
