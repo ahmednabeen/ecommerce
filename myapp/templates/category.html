@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<section class="categories-page">
+    <h2>All Categories</h2>
+
+    <div class="category-grid">
+        {% for category in categories %}
+            <a href="{{ category.get_absolute_url }}" class="card-link">
+                <div class="card">
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" class="card-image" alt="{{ category.name }}">
+                    {% endif %}
+                    <h3 class="card-title">{{ category.name }}</h3>
+                </div>
+            </a>
+        {% empty %}
+            <p>No categories available.</p>
+        {% endfor %}
+    </div>
+
+    <!-- PAGINATION -->
+    {% if categories.has_other_pages %}
+    <div class="pagination">
+
+        <!-- Previous Button -->
+        {% if categories.has_previous %}
+            <a class="page-btn" href="?page={{ categories.previous_page_number }}">Previous</a>
+        {% else %}
+            <span class="page-btn disabled">Previous</span>
+        {% endif %}
+
+        <!-- Always show first page -->
+        <a class="page-number {% if categories.number == 1 %}active{% endif %}" href="?page=1">1</a>
+
+        <!-- Show dots if needed -->
+        {% if categories.number > 4 %}
+            <span class="dots">…</span>
+        {% endif %}
+
+        <!-- Middle pages -->
+        {% for num in categories.paginator.page_range %}
+            {% if num > 1 and num < categories.paginator.num_pages %}
+                {% if num >= categories.number|add:'-1' and num <= categories.number|add:'1' %}
+                    <a class="page-number {% if categories.number == num %}active{% endif %}" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <!-- Show dots before last -->
+        {% if categories.number < categories.paginator.num_pages|add:'-3' %}
+            <span class="dots">…</span>
+        {% endif %}
+
+        <!-- Always show last page -->
+        {% if categories.paginator.num_pages > 1 %}
+            <a class="page-number {% if categories.number == categories.paginator.num_pages %}active{% endif %}" href="?page={{ categories.paginator.num_pages }}">
+                {{ categories.paginator.num_pages }}
+            </a>
+        {% endif %}
+
+        <!-- Next Button -->
+        {% if categories.has_next %}
+            <a class="page-btn" href="?page={{ categories.next_page_number }}">Next</a>
+        {% else %}
+            <span class="page-btn disabled">Next</span>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
+</section>
+{% endblock %}
+

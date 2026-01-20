@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+<section class="category-products">
+    <h2>{{ category.name }}</h2>
+
+    <div class="fp-all-product-grid">
+        {% for product in products %}
+            <div class="fp-all-product-card">
+
+                {% if product.is_on_sale %}
+                    <span class="fp-all-product-badge fp-all-product-sale-badge">
+                        Price Off
+                    </span>
+                {% endif %}
+
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="fp-all-product-image">
+
+                <div class="fp-all-product-card-content">
+                    <h3 class="fp-all-product-name">{{ product.name }}</h3>
+                    <p class="fp-all-product-price">${{ product.price }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No products in this category.</p>
+        {% endfor %}
+    </div>
+
+    {% if products.has_other_pages %}
+    <div class="fp-pagination">
+        {% if products.has_previous %}
+            <a href="?page={{ products.previous_page_number }}" class="fp-page-btn">Previous</a>
+        {% endif %}
+
+        {% for num in products.paginator.page_range %}
+            {% if num == products.number %}
+                <span class="fp-page-number active">{{ num }}</span>
+            {% else %}
+                <a href="?page={{ num }}" class="fp-page-number">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}" class="fp-page-btn">Next</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -14,32 +14,51 @@
 </section>
 
 <main>
-    <!-- Category Section  -->
+    <!-- Category Section -->
     <section class="categories">
         <h2>Categories</h2>
-        <div class="category-cards">
-            <div class="scroller-wrapper">
-                <div class="category-cards scroller">
-                    <!-- Loop through the categories A SECOND TIME (for the seamless loop) -->
-                    {% for category in categories %}
-                        <a href="#" class="card-link" aria-hidden="true"> <!-- aria-hidden for accessibility -->
-                            <div class="card">
-                                {% if category.image %}
-                                    <img src="{{ category.image.url }}" alt="{{ category.name }} logo" class="card-image">
-                                {% endif %}
-                                <h3 class="card-title">{{ category.name }}</h3>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
+
+        <div class="scroller-wrapper">
+            <div class="category-track">
+
+                <!-- FIRST SET -->
+                {% for category in categories %}
+                    <a href="{{ category.get_absolute_url }}" class="card-link">
+                        <div class="card">
+                            {% if category.image %}
+                                <img src="{{ category.image.url }}"
+                                    alt="{{ category.name }} logo"
+                                    class="card-image">
+                            {% endif %}
+                            <h3 class="card-title">{{ category.name }}</h3>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                <!-- SECOND SET (DUPLICATE FOR SEAMLESS LOOP) -->
+                {% for category in categories %}
+                    <a href="#" class="card-link" aria-hidden="true">
+                        <div class="card">
+                            {% if category.image %}
+                                <img src="{{ category.image.url }}"
+                                    alt=""
+                                    class="card-image">
+                            {% endif %}
+                            <h3 class="card-title">{{ category.name }}</h3>
+                        </div>
+                    </a>
+                {% endfor %}
+
             </div>
         </div>
     </section>
 
 
+
     <!-- Featured Product Section -->
 
-    <section class="fp-featured-products">
+    <section id="featured-products" class="fp-featured-products">
+
         <div class="fp-feat">
             <h2>Featured Products</h2>
         </div>
@@ -50,7 +69,7 @@
 
                     {% if product.is_on_sale %}
                         <span class="fp-all-product-badge fp-all-product-sale-badge">
-                            Sale
+                            Price Off
                         </span>
                     {% endif %}
 
@@ -86,29 +105,35 @@
 
         <!-- Pagination -->
         {% if products.paginator.num_pages > 1 %}
-            <div class="fp-pagination">
+        <div class="fp-pagination">
 
-                {% if products.has_previous %}
-                    <a href="?page={{ products.previous_page_number }}" class="fp-page-btn">
-                        Previous
+            {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}#featured-products" class="fp-page-btn">
+                    Previous
+                </a>
+            {% else %}
+                <span class="fp-page-btn disabled">Previous</span>
+            {% endif %}
+
+            {% for num in products.paginator.page_range %}
+                {% if num == products.number %}
+                    <span class="fp-page-number active">{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}#featured-products" class="fp-page-number">
+                        {{ num }}
                     </a>
                 {% endif %}
+            {% endfor %}
 
-                {% for num in products.paginator.page_range %}
-                    {% if num == products.number %}
-                        <span class="fp-page-number active">{{ num }}</span>
-                    {% else %}
-                        <a href="?page={{ num }}" class="fp-page-number">{{ num }}</a>
-                    {% endif %}
-                {% endfor %}
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}#featured-products" class="fp-page-btn">
+                    Next
+                </a>
+            {% else %}
+                <span class="fp-page-btn disabled">Next</span>
+            {% endif %}
 
-                {% if products.has_next %}
-                    <a href="?page={{ products.next_page_number }}" class="fp-page-btn">
-                        Next
-                    </a>
-                {% endif %}
-
-            </div>
+        </div>
         {% endif %}
     </section>
 
