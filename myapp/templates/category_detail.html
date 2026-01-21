@@ -21,6 +21,9 @@
                 <div class="fp-all-product-card-content">
                     <h3 class="fp-all-product-name">{{ product.name }}</h3>
                     <p class="fp-all-product-price">${{ product.price }}</p>
+                    <button class="add-to-cart-btn"
+                        data-product-id="{{ product.id }}">Add to Cart
+                    </button>
                 </div>
             </div>
         {% empty %}
@@ -28,24 +31,55 @@
         {% endfor %}
     </div>
 
-    {% if products.has_other_pages %}
-    <div class="fp-pagination">
+    <!-- PAGINATION -->
+
+    <div class="pagination">
+
+        <!-- Previous Button -->
         {% if products.has_previous %}
-            <a href="?page={{ products.previous_page_number }}" class="fp-page-btn">Previous</a>
+            <a class="page-btn" href="?page={{ products.previous_page_number }}">Previous</a>
+        {% else %}
+            <span class="page-btn disabled">Previous</span>
         {% endif %}
 
+        <!-- Always show first page -->
+        <a class="page-number {% if products.number == 1 %}active{% endif %}" href="?page=1">1</a>
+
+        <!-- Show dots if needed -->
+        {% if products.number > 4 %}
+            <span class="dots">…</span>
+        {% endif %}
+
+        <!-- Middle pages -->
         {% for num in products.paginator.page_range %}
-            {% if num == products.number %}
-                <span class="fp-page-number active">{{ num }}</span>
-            {% else %}
-                <a href="?page={{ num }}" class="fp-page-number">{{ num }}</a>
+            {% if num > 1 and num < products.paginator.num_pages %}
+                {% if num >= products.number|add:'-1' and num <= products.number|add:'1' %}
+                    <a class="page-number {% if products.number == num %}active{% endif %}"
+                    href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
             {% endif %}
         {% endfor %}
 
-        {% if products.has_next %}
-            <a href="?page={{ products.next_page_number }}" class="fp-page-btn">Next</a>
+        <!-- Show dots before last -->
+        {% if products.number < products.paginator.num_pages|add:'-3' %}
+            <span class="dots">…</span>
         {% endif %}
+
+        <!-- Always show last page (if more than one page) -->
+        {% if products.paginator.num_pages > 1 %}
+            <a class="page-number {% if products.number == products.paginator.num_pages %}active{% endif %}"
+            href="?page={{ products.paginator.num_pages }}">
+            {{ products.paginator.num_pages }}
+            </a>
+        {% endif %}
+
+        <!-- Next Button -->
+        {% if products.has_next %}
+            <a class="page-btn" href="?page={{ products.next_page_number }}">Next</a>
+        {% else %}
+            <span class="page-btn disabled">Next</span>
+        {% endif %}
+
     </div>
-    {% endif %}
 </section>
 {% endblock %}

@@ -6,6 +6,7 @@ from .models import Category, Product
 def home(request):
     # Fetch all featured products
     featured_product_list = Product.objects.filter(is_featured=True).order_by('name')
+    flash_products = Product.objects.filter(is_on_sale=True)
 
     # Pagination: 12 products per page
     paginator = Paginator(featured_product_list, 12)
@@ -24,6 +25,7 @@ def home(request):
     context = {
         'products': products,
         'categories': categories,
+        'flash_products': flash_products,
     }
     return render(request, 'index.html', context)
 
@@ -83,3 +85,5 @@ def category_detail(request, slug):
         'products': products
     }
     return render(request, 'category_detail.html', context)
+
+    

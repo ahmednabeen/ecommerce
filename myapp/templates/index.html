@@ -9,7 +9,7 @@
     <div class="hero-content">
         <h1>Live Better with Freshora</h1>
         <p>Discover a supershop designed to make your life simpler, healthier, and more joyful</p>
-        <a href="#" class="cta-button">Shop Now</a>
+        <a href="{% url 'product_list' %}" class="cta-button">Shop Now</a>
     </div>
 </section>
 
@@ -53,8 +53,6 @@
         </div>
     </section>
 
-
-
     <!-- Featured Product Section -->
 
     <section id="featured-products" class="fp-featured-products">
@@ -92,7 +90,8 @@
                             ${{ product.price }}
                         </p>
 
-                        <button class="fp-add-to-cart-btn">
+                        <button class="add-to-cart-btn"
+                                data-product-id="{{ product.id }}">
                             Add to Cart
                         </button>
                     </div>
@@ -137,6 +136,96 @@
         {% endif %}
     </section>
 
+    <!-- Flash Products Section -->
+    <section class="flash-products">
+        <h2>⚡ Flash Sale</h2>
+
+        <div class="flash-wrapper">
+            <div class="flash-track">
+
+                <!-- FIRST SET -->
+                {% for product in flash_products %}
+                    <div class="fp-all-product-card flash-card">
+
+                        <span class="fp-all-product-badge fp-all-product-sale-badge">
+                            Price Off
+                        </span>
+
+                        <img 
+                            src="{{ product.image.url }}" 
+                            alt="{{ product.name }}" 
+                            class="fp-all-product-image"
+                        >
+
+                        <div class="fp-all-product-card-content">
+                            <h3 class="fp-all-product-name">
+                                {{ product.name }}
+                            </h3>
+
+                            <p class="fp-all-product-price">
+                                ${{ product.price }}
+                            </p>
+
+                            <button class="add-to-cart-btn"
+                                    data-product-id="{{ product.id }}">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+                <!-- SECOND SET (duplicate for smooth scrolling) -->
+                {% for product in flash_products %}
+                    <div class="fp-all-product-card flash-card" aria-hidden="true">
+
+                        <span class="fp-all-product-badge fp-all-product-sale-badge">
+                            Price Off
+                        </span>
+
+                        <img 
+                            src="{{ product.image.url }}" 
+                            alt="" 
+                            class="fp-all-product-image"
+                        >
+
+                        <div class="fp-all-product-card-content">
+                            <h3 class="fp-all-product-name">
+                                {{ product.name }}
+                            </h3>
+
+                            <p class="fp-all-product-price">
+                                ${{ product.price }}
+                            </p>
+
+                            <button class="add-to-cart-btn"
+                                    data-product-id="{{ product.id }}">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Method Section -->
+    <section class="payment-methods">
+        <h2>Payment Method</h2>
+
+        <div class="payment-logos">
+            <img src="{% static 'images/payoneer.webp' %}" alt="Payoneer">
+            <img src="{% static 'images/American Express.png' %}" alt="American Express">
+            <img src="{% static 'images/PayPal.png' %}" alt="PayPal">
+            <img src="{% static 'images/visa.jpg' %}" alt="Visa">
+            <img src="{% static 'images/mastercard.png' %}" alt="MasterCard">
+            <img src="{% static 'images/applepay.png' %}" alt="Apple Pay">
+            <img src="{% static 'images/googlepay.png' %}" alt="Google Pay">
+            <img src="{% static 'images/stripe.png' %}" alt="Stripe">
+        </div>
+    </section>
 
 </main>
 
