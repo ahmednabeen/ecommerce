@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <!-- Main Product Detail Section -->
+    <div class="product-detail-main">
+        <!-- Left Side: Product Image -->
+        <div class="product-image-gallery">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="main-product-image">
+            {% else %}
+                <img src="https://via.placeholder.com/500x500" alt="No image available" class="main-product-image">
+            {% endif %}
+        </div>
+
+        <!-- Right Side: Product Information -->
+        <div class="product-info">
+            <p class="product-info-category">{{ product.category.name }}</p>
+            <h1 class="product-info-name">{{ product.name }}</h1>
+            
+            <p class="product-info-price">৳{{ product.price|floatformat:0 }}</p>
+
+            <div class="product-info-description">
+                <h3>Description</h3>
+                <p>{{ product.description|linebreaks }}</p>
+            </div>
+
+            <div class="product-specs">
+                <h3>Specifications</h3>
+                <ul>
+                    {% if product.product_model %}
+                        <li><strong>Model:</strong> {{ product.product_model }}</li>
+                    {% endif %}
+                    {% if product.available_size %}
+                        <li><strong>Available Size:</strong> {{ product.available_size }}</li>
+                    {% endif %}
+                    {% if product.color %}
+                        <li><strong>Color:</strong> {{ product.color }}</li>
+                    {% endif %}
+                    <li>
+                        <strong>Stock:</strong> 
+                        {% if product.stock > 0 %}
+                            <span class="in-stock">In Stock ({{ product.stock }} available )</span>
+                        {% else %}
+                            <span class="out-of-stock">Out of Stock</span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="product-actions">
+                <!-- You can add quantity selector here later -->
+                <button class="add-to-cart-btn-large" {% if product.stock == 0 %}disabled{% endif %}>
+                    {% if product.stock > 0 %}
+                        Add to Cart
+                    {% else %}
+                        Out of Stock
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products Section -->
+    {% if related_products %}
+    <div class="related-products-section">
+        <h2>You Might Also Like</h2>
+        <div class="all-product-grid">
+            {% for related_product in related_products %}
+                <!-- We reuse the same product card style from the main product list -->
+                <div class="all-product-card">
+                    <a href="{% url 'product_detail' related_product.id %}">
+                        {% if related_product.image %}
+                            <img src="{{ related_product.image.url }}" alt="{{ related_product.name }}" class="all-product-image">
+                        {% else %}
+                            <img src="https://via.placeholder.com/320x200" alt="No image available" class="all-product-image">
+                        {% endif %}
+                    </a>
+                    <div class="all-product-card-content">
+                        <p class="all-product-category">{{ related_product.category.name }}</p>
+                        <h3 class="all-product-name">{{ related_product.name }}</h3>
+                        <p class="all-product-price">৳{{ related_product.price|floatformat:0 }}</p>
+                        <a href="{% url 'product_detail' related_product.id %}" class="view-details-btn">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

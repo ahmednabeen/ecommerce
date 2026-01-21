@@ -10,4 +10,5 @@ urlpatterns = [
     path('contact/', views.contact_page, name='contact'), # Contact Page 
     path('privacy-policy/', views.privacy_policy_page, name='privacy_policy'), # privacy-policy page
     path('terms-of-service/', views.terms_of_service_page, name='terms_of_service'), #terms-of-service page
+    path('product/<int:product_id>/', views.product_detail, name='product_detail'),  #product_detail
 ]

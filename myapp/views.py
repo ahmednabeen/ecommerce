@@ -86,7 +86,19 @@ def category_detail(request, slug):
     }
     return render(request, 'category_detail.html', context)
 
-# --- ABOUT PAGE VIEW ---
+# --- Product Detail PAGE VIEW ---
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    related_products = Product.objects.filter(category=product.category).exclude(id=product_id)[:4]
+
+    context = {
+        'product': product,
+        'related_products': related_products,
+    }
+    return render(request, 'product_detail.html', context)
+
+# --- ABOUT,contact, privacy, terms_of_service PAGE VIEW ---
 
 def about(request):
     return render(request, 'about.html')    
