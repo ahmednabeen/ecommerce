@@ -86,4 +86,7 @@ def category_detail(request, slug):
     }
     return render(request, 'category_detail.html', context)
 
-    
+# --- ABOUT PAGE VIEW ---
+
+def about(request):
+    return render(request, 'about.html')    
