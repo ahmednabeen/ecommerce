@@ -1210,6 +1210,284 @@ footer {
     }
 }
 
+/* =================================================================== */
+/* CONTACT PAGE STYLES                                                 */
+/* =================================================================== */
+
+.contact-container {
+    padding: 1rem 5%;
+    margin-top: 80px; /* Same as product pages */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Header --- */
+.contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.contact-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* --- Main Content Layout --- */
+.contact-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 for form, 1/3 for info */
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+/* --- Form Styles --- */
+.contact-form-wrapper {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08 );
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #343a40;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #aa4d0e;
+    box-shadow: 0 0 0 3px rgba(170, 77, 14, 0.15);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #aa4d0e; /* Theme color */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #c96d2b; /* Lighter theme color */
+}
+
+/* --- Info Section Styles --- */
+.contact-info-wrapper {
+    padding: 2.5rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+}
+
+.contact-info-wrapper h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.contact-details i {
+    font-size: 1.2rem;
+    color: #aa4d0e; /* Theme color */
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* --- Social Media Icons --- */
+.contact-socials {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.contact-socials a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    color: #555;
+    margin: 0 0.5rem;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-socials a:hover {
+    background-color: #aa4d0e;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* --- Map Section --- */
+.contact-map-wrapper {
+    margin-bottom: 2rem;
+}
+
+.contact-map-wrapper h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-map-wrapper iframe {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .contact-main {
+        grid-template-columns: 1fr; /* Stack form and info on top of each other */
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-header h1 {
+        font-size: 2.2rem;
+    }
+    .contact-form-wrapper, .contact-info-wrapper {
+        padding: 1.5rem;
+    }
+}
+
+
+/* =================================================================== */
+/* LEGAL PAGE STYLES (Privacy Policy & Terms of Service both )          */
+/* =================================================================== */
+
+
+.legal-container {
+    padding: 1rem 5%;
+    margin-top: 80px;
+    max-width: 900px; 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFDE7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* --- Header --- */
+.legal-header {
+    background-color: beige;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.legal-header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.legal-header p {
+    font-size: 1rem;
+    color: #888;
+    margin: 0;
+}
+
+/* --- Main Content --- */
+.legal-content {
+    padding: 2.5rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+.legal-section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f1f3f5;
+    padding-bottom: 0.5rem;
+}
+
+.legal-content p {
+    margin-bottom: 1.2rem;
+}
+
+.legal-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.legal-content li {
+    margin-bottom: 0.75rem;
+}
+
+.legal-content a {
+    color: #aa4d0e; /* Theme color */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.legal-content a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .legal-container {
+        margin-top: 60px;
+        padding: 0;
+    }
+    .legal-content {
+        padding: 1.5rem;
+        font-size: 1rem;
+    }
+    .legal-header h1 {
+        font-size: 2.2rem;
+    }
+}
+
+
 
 /* ======================================================================
    Responsive Design CSS

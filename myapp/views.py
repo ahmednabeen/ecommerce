@@ -90,3 +90,9 @@ def category_detail(request, slug):
 
 def about(request):
     return render(request, 'about.html')    
+def contact_page(request):
+    return render(request, 'contact.html')
+def privacy_policy_page(request):
+    return render(request, 'privacy_policy.html')
+def terms_of_service_page(request):
+    return render(request, 'terms_of_service.html')

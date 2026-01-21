@@ -1,0 +1,64 @@
+{% extends 'base.html' %} <!-- Assuming you have a base template -->
+{% load static %}
+
+{% block title %}Privacy Policy{% endblock %}
+
+{% block content %}
+<div class="legal-container">
+    <!-- Page Header -->
+    <div class="legal-header">
+        <h1>Privacy Policy</h1>
+        <p>Last Updated: January 21, 2026</p>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="legal-content">
+        <p>Your privacy is important to us. It is [Your Company Name]'s policy to respect your privacy regarding any information we may collect from you across our website, <a href="{% url 'home' %}">[Your Website URL]</a>, and other sites we own and operate.</p>
+
+        <h2 class="legal-section-title">1. Information We Collect</h2>
+        <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+        <p>Information we may collect includes:</p>
+        <ul>
+            <li><strong>Identity Data:</strong> Name, username, or similar identifier.</li>
+            <li><strong>Contact Data:</strong> Billing address, delivery address, email address, and telephone numbers.</li>
+            <li><strong>Financial Data:</strong> Payment card details (handled by our secure payment processor).</li>
+            <li><strong>Transaction Data:</strong> Details about payments to and from you and other details of products you have purchased from us.</li>
+            <li><strong>Technical Data:</strong> Internet protocol (IP) address, your login data, browser type and version, time zone setting and location, and other technology on the devices you use to access this website.</li>
+        </ul>
+
+        <h2 class="legal-section-title">2. How We Use Your Information</h2>
+        <p>We use the information we collect in various ways, including to:</p>
+        <ul>
+            <li>Provide, operate, and maintain our website</li>
+            <li>Process your transactions and manage your orders.</li>
+            <li>Improve, personalize, and expand our website</li>
+            <li>Understand and analyze how you use our website</li>
+            <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes.</li>
+            <li>Send you emails.</li>
+            <li>Find and prevent fraud.</li>
+        </ul>
+
+        <h2 class="legal-section-title">3. Security of Your Data</h2>
+        <p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.</p>
+
+        <h2 class="legal-section-title">4. Cookies</h2>
+        <p>We use "cookies" to collect information about you and your activity across our site. A cookie is a small piece of data that our website stores on your computer, and accesses each time you visit, so we can understand how you use our site. This helps us serve you content based on preferences you have specified.</p>
+
+        <h2 class="legal-section-title">5. Links to Other Sites</h2>
+        <p>Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.</p>
+
+        <h2 class="legal-section-title">6. Your Rights</h2>
+        <p>You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services. You have the right to access, update, or delete the information we have on you. If you wish to exercise these rights, please contact us.</p>
+
+        <h2 class="legal-section-title">Contact Us</h2>
+        <p>For any questions or concerns regarding your privacy, you may contact us using the information below:</p>
+        <p><strong>[Your Company Name]</strong>  
+
+        Email: <a href="mailto:privacy@yourstore.com">privacy@yourstore.com</a>  
+
+        Via our <a href="{% url 'contact' %}">Contact Page</a>.</p>
+
+        
+    </div>
+</div>
+{% endblock %}
