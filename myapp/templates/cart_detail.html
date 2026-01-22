@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="cart-page-container">
+    <div class="cart-items-list">
+        <div class="cart-header">
+            <label><input type="checkbox" id="select-all"> SELECT ALL ({{ cart_items|length }} ITEM(S))</label>
+            <button class="delete-btn"><i class="fas fa-trash"></i> DELETE</button>
+        </div>
+
+        {% for item in cart_items %}
+        <div class="cart-shop-group">
+            <div class="shop-header">
+                <input type="checkbox" class="shop-select">
+                <i class="fas fa-store"></i> {{ item.product.vendor.name|default:"Store" }} 
+            </div>
+            
+            <!-- UPDATED: Added data-product-id attribute -->
+            <div class="cart-item-card" data-product-id="{{ item.product.id }}">
+                <input type="checkbox" class="item-select">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="item-image">
+                <div class="item-details">
+                    <p class="item-name">{{ item.product.name }}</p>
+                    <p class="item-meta">No Brand, Color Family: Black</p> {# Example meta #}
+                </div>
+                <div class="item-price" data-price="{{ item.product.price }}"> {# Added data-price for easier JS access #}
+                    <span class="current-price">৳{{ item.product.price }}</span>
+                    <span class="original-price">৳{{ item.product.original_price|default:'' }}</span>
+                </div>
+                <div class="item-actions">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    <button class="delete-item-btn" aria-label="Remove item">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus" aria-label="Decrease quantity">-</button>
+                    <!-- UPDATED: Added readonly attribute -->
+                    <input type="text" class="quantity-input" value="{{ item.quantity }}" readonly>
+                    <button class="quantity-btn plus" aria-label="Increase quantity">+</button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p>Your cart is empty.</p>
+        {% endfor %}
+    </div>
+
+    <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+            <span id="subtotal-label">Subtotal ({{ cart_items|length }} items)</span>
+            <span id="subtotal-price">৳{{ total_price }}</span>
+        </div>
+        <div class="summary-row">
+            <span>Shipping Fee</span>
+            <span id="shipping-fee">৳{{ shipping_fee }}</span>
+        </div>
+        <div class="voucher-section">
+            <input type="text" placeholder="Enter Voucher Code">
+            <button>APPLY</button>
+        </div>
+        <div class="summary-row total">
+            <span>Total</span>
+            <span id="grand-total">৳{{ grand_total }}</span>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">PROCEED TO CHECKOUT ({{ cart_items|length }})</button>
+    </div>
+</div>
+{% endblock %}

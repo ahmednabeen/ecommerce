@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Category, Product
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
+import json
+from django.views.decorators.http import require_POST
+
 
 # --- HOME PAGE VIEW ---
 def home(request):
@@ -103,3 +107,96 @@ def privacy_policy_page(request):
     return render(request, 'privacy_policy.html')
 def terms_of_service_page(request):
     return render(request, 'terms_of_service.html')
+
+# ------------- CART PAGE VIEW ---------------
+
+def add_to_cart(request, product_id ):
+    cart = request.session.get('cart', {})
+    product = get_object_or_404(Product, id=product_id)
+    
+    product_id_str = str(product_id)
+    
+    quantity = int(request.POST.get('quantity', 1))
+
+    if product_id_str in cart:
+        cart[product_id_str]['quantity'] += quantity
+    else:
+        cart[product_id_str] = {'quantity': quantity, 'price': str(product.price)} 
+    request.session['cart'] = cart
+    
+    return JsonResponse({'status': 'success', 'message': 'Item added to cart'})
+
+def view_cart(request):
+    cart = request.session.get('cart', {})
+    cart_count = sum(item['quantity'] for item in cart.values())
+    cart_items = []
+    total_price = 0
+
+    # This part of your logic is correct
+    for product_id, item in cart.items():
+        # Make sure you have a Product model imported
+        product = get_object_or_404(Product, id=int(product_id)) 
+        item_total = product.price * item['quantity']
+        cart_items.append({
+            'product': product,
+            'quantity': item['quantity'],
+            'item_total': item_total,
+        })
+        total_price += item_total
+
+    # Define the context dictionary
+    context = {
+    'cart_items': cart_items,
+    'total_price': total_price,
+    'shipping_fee': 495,
+    'grand_total': total_price + 495,
+    'cart_count': cart_count,
+    }
+
+    # Pass the context dictionary to the render function
+    return render(request, 'cart_detail.html', context)
+
+@require_POST # Ensures this view only accepts POST requests
+def update_cart(request):
+    try:
+        # Load the JSON data sent from the frontend
+        data = json.loads(request.body)
+        product_id = str(data.get('product_id'))
+        new_quantity = int(data.get('quantity'))
+
+        cart = request.session.get('cart', {})
+
+        if product_id in cart:
+            if new_quantity > 0:
+                cart[product_id]['quantity'] = new_quantity
+                request.session['cart'] = cart
+                # You can recalculate totals here and send them back if you want
+                return JsonResponse({'status': 'success', 'message': 'Cart updated.'})
+            else:
+                # If quantity is 0 or less, remove the item (optional)
+                del cart[product_id]
+                request.session['cart'] = cart
+                return JsonResponse({'status': 'success', 'message': 'Item removed.'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Product not in cart.'}, status=404)
+
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+@require_POST
+def remove_from_cart(request):
+    try:
+        data = json.loads(request.body)
+        product_id = str(data.get('product_id'))
+
+        cart = request.session.get('cart', {})
+
+        if product_id in cart:
+            del cart[product_id]
+            request.session['cart'] = cart
+            return JsonResponse({'status': 'success'})
+
+        return JsonResponse({'status': 'error', 'message': 'Item not found'}, status=404)
+
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)

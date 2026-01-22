@@ -1971,6 +1971,102 @@ footer {
     }
 }
 
+/* ======================================================================
+   Cart_detail.html Page CSS
+   ====================================================================== */
+
+.cart-page-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 5rem 5rem;
+    padding: 0 1rem;
+    margin-bottom: 12rem;
+}
+
+/* --- Left Side: Cart Items --- */
+.cart-items-list .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.cart-shop-group {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+}
+
+.shop-header {
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.5rem 1rem;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-name { font-weight: 600; }
+.item-meta { font-size: 0.9rem; color: #757575; }
+.current-price { font-size: 1.1rem; font-weight: 600; color: #f57224; }
+.original-price { text-decoration: line-through; color: #757575; font-size: 0.9rem; }
+
+.quantity-selector { display: flex; align-items: center; }
+.quantity-btn { border: 1px solid #e0e0e0; background: #fff; width: 30px; height: 30px; cursor: pointer; }
+.quantity-input { width: 40px; text-align: center; border: 1px solid #e0e0e0; height: 28px; }
+
+/* --- Right Side: Order Summary --- */
+.order-summary {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content; /* Makes it stick to the top */
+    border: 1px solid #e0e0e0;
+}
+
+.order-summary h3 { margin-top: 0; }
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+.summary-row.total { font-weight: bold; font-size: 1.2rem; }
+.voucher-section { display: flex; margin-bottom: 1rem; }
+.voucher-section input { flex-grow: 1; border: 1px solid #ccc; padding: 0.5rem; }
+.voucher-section button { background-color: #007bff; color: white; border: none; padding: 0.5rem 1rem; }
+.checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: #f57224;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Add responsive styles */
+@media (max-width: 992px) {
+    .cart-page-container {
+        grid-template-columns: 1fr; /* Stack them on smaller screens */
+    }
+}
+
+
 
 /* ======================================================================
    Responsive Design CSS

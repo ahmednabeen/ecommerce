@@ -52,12 +52,8 @@
 
             <div class="product-actions">
                 <!-- Can add quantity selector here later -->
-                <button class="add-to-cart-btn-large" {% if product.stock == 0 %}disabled{% endif %}>
-                    {% if product.stock > 0 %}
-                        Add to Cart
-                    {% else %}
-                        Out of Stock
-                    {% endif %}
+                <button class="add-to-cart-btn-large" data-product-id="{{ product.id }}">
+                    Add to Cart
                 </button>
             </div>
         </div>

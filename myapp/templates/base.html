@@ -37,9 +37,11 @@
                     </div>
 
                     <div class="cart-container">
-                        <a href="#" class="cart-icon">
+                        <a href="{% url 'view_cart' %}" class="cart-icon">
                             &#128722; 
-                            <span class="cart-badge" id="cartBadge">0</span>
+                            <span id="cartBadge" class="cart-badge {% if cart_count %}active{% endif %}">
+                                {{ cart_count|default:0 }}
+                            </span>
                         </a>
                     </div>
                 </div>
