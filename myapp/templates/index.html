@@ -21,7 +21,6 @@
         <div class="scroller-wrapper">
             <div class="category-track">
 
-                <!-- FIRST SET -->
                 {% for category in categories %}
                     <a href="{{ category.get_absolute_url }}" class="card-link">
                         <div class="card">
@@ -35,7 +34,6 @@
                     </a>
                 {% endfor %}
 
-                <!-- SECOND SET (DUPLICATE FOR SEAMLESS LOOP) -->
                 {% for category in categories %}
                     <a href="#" class="card-link" aria-hidden="true">
                         <div class="card">
@@ -71,7 +69,6 @@
                         </span>
                     {% endif %}
 
-                    <!-- 1. WRAP THE IMAGE IN A LINK to the product's detail page -->
                     <a href="{% url 'product_detail' product.id %}">
                         <img 
                             src="{{ product.image.url }}" 
@@ -81,17 +78,11 @@
                     </a>
 
                     <div class="fp-all-product-card-content">
-                        {% comment %} <p class="fp-all-product-category">
-                            {{ product.category.name }}
-                        </p> {% endcomment %}
-
-                        <!-- 2. WRAP THE NAME IN A LINK to the product's detail page -->
                         <h3 class="fp-all-product-name">
                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                         </h3>
 
                         <p class="fp-all-product-price">
-                            <!-- Added floatformat for consistency -->
                             ৳{{ product.price|floatformat:0 }}
                         </p>
 
@@ -109,7 +100,6 @@
         <!-- Pagination -->
         {% if products.paginator.num_pages > 1 %}
         <div class="fp-pagination">
-            <!-- Pagination links remain the same -->
             {% if products.has_previous %}
                 <a href="?page={{ products.previous_page_number }}#featured-products" class="fp-page-btn">
                     Previous
@@ -147,12 +137,8 @@
         <div class="flash-wrapper">
             <div class="flash-track">
 
-                <!-- FIRST SET -->
                 {% for product in flash_products %}
                     <div class="fp-all-product-card flash-card">
-                        
-                        <!-- "Price Off" badge has been removed from here -->
-
                         <a href="{% url 'product_detail' product.id %}">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="fp-all-product-image">
                         </a>
@@ -170,12 +156,8 @@
                     </div>
                 {% endfor %}
 
-                <!-- SECOND SET (duplicate for smooth scrolling) -->
                 {% for product in flash_products %}
                     <div class="fp-all-product-card flash-card" aria-hidden="true">
-                        
-                        <!-- "Price Off" badge has been removed from here as well -->
-
                         <a href="{% url 'product_detail' product.id %}" tabindex="-1">
                             <img src="{{ product.image.url }}" alt="" class="fp-all-product-image">
                         </a>

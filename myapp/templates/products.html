@@ -22,7 +22,6 @@
                 <div class="all-product-badge all-product-featured-badge">FEATURED</div>
             {% endif %}
 
-            <!-- 1. WRAP THE IMAGE IN A LINK -->
             <a href="{% url 'product_detail' product.id %}">
                 <img src="{{ product.image.url }}" 
                      alt="Image of {{ product.name }}" 
@@ -30,15 +29,12 @@
             </a>
 
             <div class="all-product-card-content">
-                {% comment %} <p class="all-product-category">{{ product.category.name }}</p> {% endcomment %}
                 
-                <!-- 2. WRAP THE NAME IN A LINK -->
                 <h3 class="all-product-name">
                     <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                 </h3>
                 
                 <p class="all-product-price">
-                    <!-- Changed floatformat for consistency -->
                     ৳{{ product.price|floatformat:0 }}
                 </p>
                 
@@ -60,22 +56,18 @@
 
     <div class="pagination">
 
-        <!-- Previous Button -->
         {% if products.has_previous %}
             <a class="page-btn" href="?page={{ products.previous_page_number }}">Previous</a>
         {% else %}
             <span class="page-btn disabled">Previous</span>
         {% endif %}
 
-        <!-- Always show first page -->
         <a class="page-number {% if products.number == 1 %}active{% endif %}" href="?page=1">1</a>
 
-        <!-- Show dots if needed -->
         {% if products.number > 4 %}
             <span class="dots">…</span>
         {% endif %}
 
-        <!-- Middle pages -->
         {% for num in products.paginator.page_range %}
             {% if num > 1 and num < products.paginator.num_pages %}
                 {% if num >= products.number|add:'-1' and num <= products.number|add:'1' %}
@@ -85,12 +77,10 @@
             {% endif %}
         {% endfor %}
 
-        <!-- Show dots before last -->
         {% if products.number < products.paginator.num_pages|add:'-3' %}
             <span class="dots">…</span>
         {% endif %}
 
-        <!-- Always show last page (if more than one page) -->
         {% if products.paginator.num_pages > 1 %}
             <a class="page-number {% if products.number == products.paginator.num_pages %}active{% endif %}"
             href="?page={{ products.paginator.num_pages }}">
@@ -98,7 +88,6 @@
             </a>
         {% endif %}
 
-        <!-- Next Button -->
         {% if products.has_next %}
             <a class="page-btn" href="?page={{ products.next_page_number }}">Next</a>
         {% else %}

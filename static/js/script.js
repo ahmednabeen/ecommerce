@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    // --- Sticky Navbar on Scroll ---
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        window.addEventListener('scroll', () => {
-            // If user scrolls down more than 50 pixels
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+    // --- Hamburger Menu Functionality ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Check if both hamburger and nav-links exist
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
     }
 
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
             if (isActive) {
                 searchInput.focus();
-                // Move input before the button in the HTML structure
                 searchContainer.insertBefore(searchInput, searchBtn);
             }
         });
@@ -44,6 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             button.addEventListener('click', () => {
                 itemCount++;
                 cartBadge.textContent = itemCount;
+                // The 'active' class on the badge is good for animations
                 if (!cartBadge.classList.contains('active')) {
                     cartBadge.classList.add('active');
                 }

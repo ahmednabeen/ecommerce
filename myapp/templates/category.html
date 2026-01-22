@@ -6,7 +6,7 @@
 {% block content %}
 <section class="categories-page">
     <h2>All Categories</h2>
-
+    
     <div class="category-grid">
         {% for category in categories %}
             <a href="{{ category.get_absolute_url }}" class="card-link">

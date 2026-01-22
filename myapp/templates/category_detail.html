@@ -16,19 +16,16 @@
                     </span>
                 {% endif %}
 
-                <!-- 1. WRAP THE IMAGE IN A LINK -->
                 <a href="{% url 'product_detail' product.id %}">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="fp-all-product-image">
                 </a>
 
                 <div class="fp-all-product-card-content">
-                    <!-- 2. WRAP THE NAME IN A LINK -->
                     <h3 class="fp-all-product-name">
                         <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                     </h3>
                     
                     <p class="fp-all-product-price">
-                        <!-- Added floatformat for consistency -->
                         ৳{{ product.price|floatformat:0 }}
                     </p>
                     
@@ -42,15 +39,13 @@
         {% endfor %}
     </div>
 
-    <!-- PAGINATION (No changes needed here) -->
+    <!-- PAGINATION  -->
     <div class="pagination">
         {% if products.has_previous %}
             <a class="page-btn" href="?page={{ products.previous_page_number }}">Previous</a>
         {% else %}
             <span class="page-btn disabled">Previous</span>
         {% endif %}
-        
-        <!-- ... rest of your pagination logic ... -->
 
         {% if products.has_next %}
             <a class="page-btn" href="?page={{ products.next_page_number }}">Next</a>

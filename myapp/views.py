@@ -4,11 +4,8 @@ from .models import Category, Product
 
 # --- HOME PAGE VIEW ---
 def home(request):
-    # Fetch all featured products
     featured_product_list = Product.objects.filter(is_featured=True).order_by('name')
     flash_products = Product.objects.filter(is_on_sale=True)
-
-    # Pagination: 12 products per page
     paginator = Paginator(featured_product_list, 12)
     page_number = request.GET.get('page')
 
@@ -19,7 +16,6 @@ def home(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    # All categories for home page category section
     categories = Category.objects.all()
 
     context = {
@@ -51,7 +47,7 @@ def product_list(request):
 # --- CATEGORY LIST PAGE VIEW ---
 def category_list(request):
     category_queryset = Category.objects.all()
-    paginator = Paginator(category_queryset, 16)  # 16 categories per page
+    paginator = Paginator(category_queryset, 16)  
     page_number = request.GET.get('page')
 
     try:
@@ -69,7 +65,6 @@ def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
     product_list = Product.objects.filter(category=category).order_by('name')
 
-    # Pagination: 12 products per page
     paginator = Paginator(product_list, 12)
     page_number = request.GET.get('page')
 

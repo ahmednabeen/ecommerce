@@ -12,10 +12,12 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="#">
+                <a href="{% url 'home' %}">  {# It's good practice to link the logo to the home page #}
                     <img src="{% static 'images/logo.png' %}" alt="Mahua SuperShop Logo">
                 </a>
             </div>
+
+            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'product_list' %}">Products</a></li>
@@ -24,32 +26,41 @@
                 <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
 
-            
-            <div class="nav-icons">
-                <!-- Search Container -->
-                <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
-                    <button class="search-btn" id="searchBtn">&#128269;</button>
+            <!-- This new container will hold all controls on the right side -->
+            <div class="mobile-nav-controls">
+
+                <!-- Original nav-icons div -->
+                <div class="nav-icons">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
+                        <button class="search-btn" id="searchBtn">&#128269;</button>
+                    </div>
+
+                    <div class="cart-container">
+                        <a href="#" class="cart-icon">
+                            &#128722; 
+                            <span class="cart-badge" id="cartBadge">0</span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Cart Icon -->
-                <div class="cart-container">
-                    <a href="#" class="cart-icon">
-                        &#128722; <!-- Shopping cart HTML entity -->
-                        <span class="cart-badge" id="cartBadge">0</span>
-                    </a>
+                <!-- ADDED: The Hamburger Menu Icon -->
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
                 </div>
+
             </div>
         </nav>
     </header>
 
-    <!-- This is where content from other pages will be injected -->
     {% block content %}
     {% endblock %}
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2026 SuperShop. All rights reserved.</p>
+            <p>&copy;  2026 Freshora Online Store. All rights reserved.</p>
             <ul class="footer-links">
                 <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
                 <li><a href="{% url 'terms_of_service' %}">Terms of Service</a></li>
