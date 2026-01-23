@@ -145,12 +145,15 @@ def view_cart(request):
         total_price += item_total
 
     # Define the context dictionary
+    shipping_fee = 495 if total_price > 0 else 0
+    grand_total = total_price + shipping_fee
+
     context = {
-    'cart_items': cart_items,
-    'total_price': total_price,
-    'shipping_fee': 495,
-    'grand_total': total_price + 495,
-    'cart_count': cart_count,
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'shipping_fee': shipping_fee,
+        'grand_total': grand_total,
+        'cart_count': cart_count,
     }
     return render(request, 'cart_detail.html', context)
 
