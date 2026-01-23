@@ -534,7 +534,7 @@ h2 {
 
 /* --- Pagination --- */
 .fp-pagination {
-   display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.6rem;
@@ -588,6 +588,7 @@ h2 {
 
 /* Active Page */
 .fp-page-number.active {
+    background-color: #28a745;
     color: #ffffff;
     border-color: #28a745;
     pointer-events: none;
@@ -1837,8 +1838,8 @@ footer {
 }
 
 .add-to-cart-btn-large {
-    width: 100%; 
-    padding: 12px;
+    width: 60%; 
+    padding: 10px;
     font-size: 1.2rem;
     font-weight: 600;
     background-color: #aa4d0e;
@@ -1886,6 +1887,7 @@ footer {
 .related-products-section .all-product-card {
     flex: 0 0 250px; 
     max-width: 250px;
+    height: 450px;
 }
 
 .view-details-btn {
@@ -2049,13 +2051,13 @@ footer {
 .voucher-section button { background-color: #007bff; color: white; border: none; padding: 0.5rem 1rem; }
 .checkout-btn {
     width: 100%;
-    padding: 1rem;
-    background-color: #f57224;
+    padding: 10px;
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 300;
     cursor: pointer;
 }
 

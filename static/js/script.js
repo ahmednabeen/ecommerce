@@ -1,4 +1,4 @@
-// ================= CSRF HELPER (ONCE) =================
+// ================= CSRF HELPER =================
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
