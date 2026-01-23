@@ -15,4 +15,5 @@ urlpatterns = [
     path('cart/add/<int:product_id>/', views.add_to_cart, name='add_to_cart'),  # Cart Page
     path('cart/update/', views.update_cart, name='update_cart'), # Cart Page
     path('cart/remove/', views.remove_from_cart, name='remove_from_cart'), # delete button active in cart 
+    path('cart/remove-selected/', views.remove_selected_from_cart, name='remove_selected_from_cart'),  # Top delete button active in cart
 ]

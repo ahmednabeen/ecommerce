@@ -8,7 +8,7 @@
     <div class="cart-items-list">
         <div class="cart-header">
             <label><input type="checkbox" id="select-all"> SELECT ALL ({{ cart_items|length }} ITEM(S))</label>
-            <button class="delete-btn"><i class="fas fa-trash"></i> DELETE</button>
+            <button class="delete-btn" id="delete-selected-btn"><i class="fas fa-trash"></i> DELETE</button>
         </div>
 
         {% for item in cart_items %}
@@ -20,7 +20,7 @@
             
             <!-- UPDATED: Added data-product-id attribute -->
             <div class="cart-item-card" data-product-id="{{ item.product.id }}">
-                <input type="checkbox" class="item-select">
+                <input type="checkbox" class="item-select" data-product-id="{{ item.product.id }}">
                 <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="item-image">
                 <div class="item-details">
                     <p class="item-name">{{ item.product.name }}</p>

@@ -165,3 +165,115 @@ deleteButtons.forEach(button => {
         .catch(err => console.error('Delete error:', err));
     });
 });
+
+// =================================================
+// ✅ TOP DELETE – REMOVE SELECTED ITEMS
+// =================================================
+
+const topDeleteBtn = document.querySelector('.delete-btn');
+
+if (topDeleteBtn) {
+    topDeleteBtn.addEventListener('click', () => {
+
+        const selectedCheckboxes = document.querySelectorAll('.item-select:checked');
+
+        if (selectedCheckboxes.length === 0) {
+            alert('Please select at least one item to delete.');
+            return;
+        }
+
+        const productIds = [];
+        selectedCheckboxes.forEach(cb => {
+            productIds.push(cb.dataset.productId);
+        });
+
+        fetch('/cart/remove-selected/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify({
+                product_ids: productIds
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+
+                selectedCheckboxes.forEach(cb => {
+                    cb.closest('.cart-shop-group').remove();
+                });
+
+                // Update badge
+                const cartBadge = document.getElementById('cartBadge');
+                let count = parseInt(cartBadge.textContent) || 0;
+                count -= selectedCheckboxes.length;
+                cartBadge.textContent = Math.max(count, 0);
+
+                if (cartBadge.textContent === '0') {
+                    cartBadge.classList.remove('active');
+                }
+            }
+        })
+        .catch(err => console.error('Bulk delete error:', err));
+    });
+}
+
+
+
+/* ---------- CSRF helper ---------- */
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+/* ---------- SELECT ALL ---------- */
+document.getElementById('select-all').addEventListener('change', function () {
+    document.querySelectorAll('.item-select').forEach(cb => {
+        cb.checked = this.checked;
+    });
+});
+
+/* ---------- TOP DELETE (Selected Items) ---------- */
+document.getElementById('delete-selected-btn').addEventListener('click', function () {
+    const selectedIds = [];
+
+    document.querySelectorAll('.item-select:checked').forEach(cb => {
+        selectedIds.push(cb.dataset.productId);
+    });
+
+    if (selectedIds.length === 0) {
+        alert('Please select at least one item to delete');
+        return;
+    }
+
+    fetch("{% url 'remove_selected_from_cart' %}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+            product_ids: selectedIds
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            location.reload();
+        }
+    });
+});
+

@@ -152,8 +152,6 @@ def view_cart(request):
     'grand_total': total_price + 495,
     'cart_count': cart_count,
     }
-
-    # Pass the context dictionary to the render function
     return render(request, 'cart_detail.html', context)
 
 @require_POST # Ensures this view only accepts POST requests
@@ -200,3 +198,23 @@ def remove_from_cart(request):
 
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+@require_POST
+def remove_selected_from_cart(request):
+        try:
+            data = json.loads(request.body)
+            product_ids = data.get('product_ids', [])
+
+            cart = request.session.get('cart', {})
+
+            for pid in product_ids:
+                pid = str(pid)
+                if pid in cart:
+                    del cart[pid]
+
+            request.session['cart'] = cart
+            return JsonResponse({'status': 'success'})
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
