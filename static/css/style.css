@@ -2068,6 +2068,34 @@ footer {
     }
 }
 
+/* ======================================================================
+   Back To Top Design CSS
+   ====================================================================== */
+
+#backToTop {
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: 45px;
+    height: 45px;
+    font-size: 30px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #a8a4a4;
+    color: #0f0d0d;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+    background-color: #343131;
+    transform: translateX(-50%) translateY(-4px);
+}
 
 
 /* ======================================================================
