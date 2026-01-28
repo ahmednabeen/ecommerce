@@ -67,7 +67,11 @@
             <span>Total</span>
             <span id="grand-total">৳{{ grand_total }}</span>
         </div>
-        <button class="checkout-btn" id="checkout-btn">PROCEED TO CHECKOUT ({{ cart_items|length }})</button>
+        <a href="{% url 'checkout_page' %}" class="checkout-link">
+            <button class="checkout-btn" id="checkout-btn">
+                PROCEED TO CHECKOUT ({{ cart_items|length }})
+            </button>
+        </a>
     </div>
 </div>
 {% endblock %}

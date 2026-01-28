@@ -221,3 +221,30 @@ def remove_selected_from_cart(request):
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
 
+# ------------- Checkout PAGE VIEW ---------------
+
+def checkout_page(request):
+    cart = request.session.get('cart', {})
+    cart_items = []
+    total_price = 0
+
+    for product_id, item in cart.items():
+        product = get_object_or_404(Product, id=int(product_id))
+        item_total = product.price * item['quantity']
+        cart_items.append({
+            'product': product,
+            'quantity': item['quantity'],
+            'item_total': item_total,
+        })
+        total_price += item_total
+
+    shipping_fee = 495 if total_price > 0 else 0
+    grand_total = total_price + shipping_fee
+
+    context = {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'shipping_fee': shipping_fee,
+        'grand_total': grand_total,
+    }
+    return render(request, 'checkout.html', context)

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="checkout-container">
+    <div class="checkout-header">
+        <h1>Checkout</h1>
+    </div>
+
+    <div class="checkout-main">
+        <!-- Left Side: Shipping and Payment Forms -->
+        <div class="shipping-and-payment">
+            <!-- Shipping Address Form -->
+            <div class="shipping-form">
+                <h2>Shipping Address</h2>
+                <form id="checkout-form" action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="tel" id="phone_number" name="phone_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" placeholder="House No. / Street" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal_code">Postal Code</label>
+                        <input type="text" id="postal_code" name="postal_code" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="payment-method-section">
+                <h2>Payment Method</h2>
+                <p>All transactions are secure and encrypted.</p>
+
+                <!-- Payment Options (Radio Buttons) -->
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <input type="radio" id="cod" name="payment_method" value="cod" checked>
+                        <label for="cod">
+                            <i class="fas fa-money-bill-wave"></i>
+                            Cash on Delivery
+                        </label>
+                        <div class="payment-option-description">
+                            Pay with cash upon delivery of your order.
+                        </div>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="online_payment" name="payment_method" value="online">
+                        <label for="online_payment">
+                            <i class="fas fa-credit-card"></i>
+                            Pay Online
+                        </label>
+                        <div class="payment-option-description">
+                            Pay with your credit/debit card or digital wallet.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Logos -->
+                <div class="payment-logos">
+                    <p>We accept:</p>
+                    <div class="logos-container">
+                        <img src="{% static 'images/payoneer.webp' %}" alt="Payoneer" title="Payoneer">
+                        <img src="{% static 'images/American Express.png' %}" alt="American Express" title="American Express">
+                        <img src="{% static 'images/PayPal.png' %}" alt="PayPal" title="PayPal">
+                        <img src="{% static 'images/visa.jpg' %}" alt="Visa" title="Visa">
+                        <img src="{% static 'images/mastercard.png' %}" alt="MasterCard" title="MasterCard">
+                        <img src="{% static 'images/applepay.png' %}" alt="Apple Pay" title="Apple Pay">
+                        <img src="{% static 'images/googlepay.png' %}" alt="Google Pay" title="Google Pay">
+                        <img src="{% static 'images/stripe.png' %}" alt="Stripe" title="Stripe">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Order Summary -->
+        <div class="checkout-summary">
+            <h3>Your Order</h3>
+            <div class="order-items">
+                {% for item in cart_items %}
+                <div class="order-item">
+                    <span class="item-name">{{ item.product.name }} (x{{ item.quantity }})</span>
+                    <span class="item-price">৳{{ item.item_total|floatformat:0 }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>৳{{ total_price|floatformat:0 }}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>৳{{ shipping_fee|floatformat:0 }}</span>
+            </div>
+            <div class="summary-row total">
+                <span>Grand Total</span>
+                <span>৳{{ grand_total|floatformat:0 }}</span>
+            </div>
+            
+            <!-- This button now submits the main form which includes payment choice -->
+            <button type="submit" form="checkout-form" class="place-order-btn">Place Order</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
