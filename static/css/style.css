@@ -20,7 +20,7 @@ body {
     padding: 1rem 1.5rem;
     color: white;
     box-sizing: border-box;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Added a subtle shadow for depth */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); 
 }
 
 .logo a {
@@ -113,7 +113,7 @@ body {
 
 .hamburger:hover,
 .hamburger:focus {
-    transform: scale(1.25); /* Makes the icon 15% bigger */
+    transform: scale(1.25); 
 }
 
 
@@ -486,7 +486,6 @@ h2 {
     transition: color 0.2s ease; 
 }
 
-/* Optional: Add a hover effect to show it's still clickable */
 .fp-all-product-name a:hover {
     color: #aa4d0e; 
 }
@@ -724,7 +723,7 @@ h2 {
 
 /* ====================================================================== 
      Footer Section CSS
-   ========================================================================== */
+   ====================================================================== */
 
 footer {
     background-color: #333;
@@ -1031,13 +1030,11 @@ footer {
 /* Grid of category cards */
 .category-grid {
     display: grid;
-    /* DESKTOP: Your original 4-column layout */
     grid-template-columns: repeat(4, 1fr); 
     gap: 1rem;
     justify-items: center;
 }
 
-/* Category card styling - UNCHANGED FROM YOUR ORIGINAL */
 .category-grid .card-link {
     text-decoration: none;
     color: inherit;
@@ -1053,15 +1050,15 @@ footer {
     flex-direction: column;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 300px; /* Your original fixed width */
-    height: 350px; /* Your original fixed height */
+    width: 300px; 
+    height: 350px; 
 }
 
 .category-grid .card:hover {
-    transform: scale(1.05); /* Your original hover effect */
+    transform: scale(1.05); 
 }
 
-/* Category image - UNCHANGED FROM YOUR ORIGINAL */
+/* Category image */
 .category-grid .card img {
     width: 15rem;
     height: 15rem;
@@ -1070,10 +1067,10 @@ footer {
 }
 
 .category-grid .card img:hover {
-    transform: scale(1.05); /* Your original hover effect */
+    transform: scale(1.05); 
 }
 
-/* Category title - UNCHANGED FROM YOUR ORIGINAL */
+/* Category title */
 .category-grid .card h3 {
     font-size: 1.3rem;
     font-weight: 600;
@@ -1085,7 +1082,6 @@ footer {
 /* For Laptops (screen width <= 1300px) */
 @media (max-width: 1300px) {
     .category-grid {
-        /* Switch to 3 columns */
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -1093,14 +1089,12 @@ footer {
 /* For Tablets (screen width <= 992px) */
 @media (max-width: 992px) {
     .category-grid {
-        /* Switch to 2 columns */
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* For Large Mobile / Small Tablets (screen width <= 768px) */
 @media (max-width: 768px) {
-    /* --- Navbar Adjustments --- */
     .navbar {
         position: relative;
         padding: 1rem;
@@ -1116,7 +1110,7 @@ footer {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.5s ease-in-out;
-        z-index: 999; /* Ensures menu appears on top of content */
+        z-index: 999; 
     }
 
     .nav-links.active {
@@ -1166,7 +1160,6 @@ footer {
 /* For Mobile Phones (screen width <= 650px) */
 @media (max-width: 650px) {
     .category-grid {
-        /* Switch to 1 column */
         grid-template-columns: 1fr;
     }
 
@@ -1970,15 +1963,243 @@ footer {
     }
 }
 
+
+/* ===================================================================
+        CART Detail Page CSS
+   =================================================================== */
+
+.cart-page-container {
+    display: grid;
+    padding: 1rem 5%;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    background: #FFFDE7;
+    margin-bottom: 10.2rem;
+}
+
+.cart-items-list {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #d63031;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Shop group */
+.cart-shop-group {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.shop-header {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* ===== CART ITEM CARD ===== */
+.cart-item-card {
+    display: grid;
+    grid-template-columns: 30px 90px 1.5fr 1fr 120px 120px;
+    gap: 10px;
+    align-items: center;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.item-details {
+    font-size: 14px;
+}
+
+.item-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.item-meta {
+    color: #888;
+    font-size: 12px;
+}
+
+/* Price */
+.item-price {
+    font-weight: 600;
+}
+
+.current-price {
+    color: #e67e22;
+    display: block;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* Actions */
+.item-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.wishlist-btn {
+    color: #e84393;
+}
+
+.delete-item-btn {
+    color: #d63031;
+}
+
+/* Quantity */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.quantity-btn {
+    background: #f1f2f6;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+}
+
+/* ===== ORDER SUMMARY ===== */
+.order-summary {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.order-summary h3 {
+    margin-bottom: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.summary-row.total {
+    font-size: 18px;
+    font-weight: bold;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* Voucher */
+.voucher-section {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.voucher-section input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.voucher-section button {
+    padding: 8px 12px;
+    background: #0984e3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Checkout */
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #aa4d0e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.checkout-btn:hover {
+    background: #d35400;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .cart-page-container {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-item-card {
+        grid-template-columns: 25px 70px 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .item-price,
+    .item-actions,
+    .quantity-selector {
+        grid-column: span 3;
+    }
+}
+
 /* =================================================================== */
 /*        CHECKOUT PAGE STYLES (with Payment Section)                 */
 /* =================================================================== */
 
 /* --- Main Layout --- */
 .checkout-container {
-    max-width: 1100px;
-    margin: 100px auto 40px;
-    padding: 0 5%;
+    padding: 1rem 7%;
 }
 
 .checkout-header {
@@ -2004,7 +2225,7 @@ footer {
 
 /* --- Shipping Form --- */
 .shipping-form {
-    margin-bottom: 3rem; /* Space between shipping and payment sections */
+    margin-bottom: 3rem; 
 }
 
 .shipping-form .form-group {
@@ -2051,7 +2272,7 @@ footer {
 
 .payment-option input[type="radio"] {
     margin-right: 10px;
-    accent-color: #aa4d0e; /* Modern way to color radio buttons */
+    accent-color: #aa4d0e; 
 }
 
 .payment-option label {
@@ -2070,7 +2291,7 @@ footer {
 .payment-option-description {
     font-size: 0.9rem;
     color: #777;
-    padding-left: 32px; /* Align with the label text */
+    padding-left: 32px; 
     margin-top: 0.3rem;
 }
 
@@ -2096,8 +2317,8 @@ footer {
 }
 
 .logos-container img {
-    height: 28px; /* Standardized height for logos */
-    max-width: 50px;
+    height: 28px; 
+    max-width: 5rem;
     object-fit: contain;
     background-color: white;
     padding: 4px;
@@ -2111,7 +2332,7 @@ footer {
     padding: 2rem;
     border-radius: 8px;
     height: fit-content;
-    position: sticky; /* Makes the summary stick on screen while scrolling */
+    position: sticky; 
     top: 100px;
 }
 
@@ -2127,7 +2348,7 @@ footer {
 
 .place-order-btn {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     font-size: 1.2rem;
     font-weight: 600;
     background-color: #aa4d0e;
@@ -2150,7 +2371,7 @@ footer {
     }
     .checkout-summary {
         margin-top: 2rem;
-        position: static; /* Unstick the summary on mobile */
+        position: static; 
     }
 }
 
@@ -2159,31 +2380,26 @@ footer {
 /* =================================================================== */
 
 #backToTop {
-    /* --- Positioning and Layering (The Fix) --- */
-    position: fixed;   /* Keeps the button in the same place on the screen when scrolling */
-    z-index: 9999;     /* CRITICAL: Ensures the button is on top of all other elements */
-
-    /* --- Placement --- */
-    bottom: 20px;      /* 20px from the bottom of the viewport */
-    right: 20px;       /* 20px from the right of the viewport */
-
-    /* --- Appearance --- */
-    background-color: #aa4d0e; /* Your theme color */
+    position: fixed;
+    z-index: 9999;
+    top: 86%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: #333;
     color: white;
     border: none;
-    border-radius: 50%; /* Makes it a circle */
-    width: 50px;       /* Circle width */
-    height: 50px;      /* Circle height */
-    font-size: 24px;   /* Size of the arrow */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
     cursor: pointer;
-    
-    /* --- Initial State & Transitions --- */
-    display: none;     /* Initially hidden. JavaScript will show it on scroll. */
+    display: none;
     opacity: 0.8;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
+    transition: opacity 0.3s ease,
+                background-color 0.3s ease;
 }
 
 #backToTop:hover {
     opacity: 1;
-    background-color: #c96d2b; /* Lighter theme color on hover */
+    background-color: #919090;
 }
